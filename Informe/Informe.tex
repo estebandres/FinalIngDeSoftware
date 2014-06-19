@@ -16,7 +16,7 @@
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
 
-\documentclass[12pt]{article} % Default font size is 12pt, it can be changed here
+\documentclass[10pt]{article} % Default font size is 12pt, it can be changed here
 
 \usepackage[spanish]{babel}%Para el español
 \usepackage[utf8]{inputenc}%para los acentos
@@ -135,13 +135,179 @@ Ing. Martín \textsc{Miceli}
 %	INTRODUCTION
 %----------------------------------------------------------------------------------------
 
-\section{Introducción} % Major section
-
+\begin{abstract}
 En el presente informe se expone el desarrollo del trabajo final para la cátedra Programación Concurrente que se cursa en el primer cuatrimestre del cuarto año de la carrera Ingeniería en Computación en la Facultad de Ciencias Exáctas Físicas y Naturales de la Universidad Nacional de Córdoba, Argentina. 
-Este trabajo tiene por consigna la simulación de una celda flexible de producción mediante el modelado por redes de petri y la implementación concurrente programada en Java. Tal implementación incluye la programación de los procesos productivos que ejecutan sus tareas de forma paralela y el diseño de un monitor para garantizar la sincronización de la adquisición y devolución de los recursos compartidos.  
+Este trabajo tiene por consigna la simulación de una celda flexible de producción mediante el modelado por redes de petri y la implementación concurrente programada en Java. Tal implementación incluye la programación de los procesos productivos que ejecutan sus tareas de forma paralela y el diseño de un monitor para garantizar la sincronización de la adquisición y devolución de los recursos compartidos.
 
+\end{abstract} % Major section
+
+\section{Nota de Entrega}
+
+\subsection{Listado de Funcionalidad}
+
+\subsection{Pass/Fail Ratio del Sistema (PFR)}
+
+\subsection{Bugs Conocidos}
+
+\subsection{Vínculo a las fuentes del proyecto}
+
+\section{Manejo de Configuraciones}
+
+\subsection{Plan de Manejo de las Configuraciones}
+
+\subsection{Herramienta de Control de Versiones}
+Dirección y forma de accesos a la herramienta de control de versiones
+
+\subsection{Sobre los Directorios}
+Esquema de Directorios y propósito de cada uno.
+
+\subsection{Etiquetado y Nombramiento de Archivos}
+Normas de etiquetado y de nombramiento de los archivos
+
+\subsection{Plan del Esquema de Ramas}
+
+\subsection{Políticas de Marge y de Etiquetado de Progreso.}
+Políticas de fusión de archivos (o sea mergeo) y de etiquetado de acuerdo al progreso de calidad en los entregables.
+
+\subsection{Sobre los Releases}
+Forma de entrega de los “releases”, instrucciones mínimas de instalación y formato de entrega.
+
+\subsubsection{Forma de Entrega}
+
+\subsubsection{Instrucciones de Instalación}
+
+\subsubsection{Formato de Entrega}
+
+\subsection{Integrantes}
+Listado y forma de contacto de los integrantes del equipo, así como sus roles en la CCB. También incluir periodicidad de las reuniones y miembros obligatorios.
+\subsubsection{Roles}
+\subsubsection{Sobre las Reuniones}
+
+\subsection{Herramienta de Seguimiento de Errores}
+Herramienta de seguimiento de bugs usado para reportar los defectos descubiertos y su estado.
+
+\subsection{Cualquier otra información relevante}
+
+
+\section{Requerimientos}
+
+\subsection{Diagramas de Casos de Uso}
+
+\subsection{Diagramas de Secuencias}
+
+\subsection{Requerimeintos Funcionales del Sistema}
+
+\subsection{Requerimeintos No Funcionales del Sistema}
+
+\subsection{Diagrama de Arquitectura Preliminar}
+
+\subsection{Matriz de Trazabilidad}
+
+
+\section{Arquitectura}
+
+\subsection{Gráfico de Arquitectura}
+
+\subsection{Componentes vs Interfaces Externas}
+
+\subsection{Patrón de Arquitectura}
+
+\subsection{UML de Despliegue}
+
+\subsection{UML de Componenetes}
+
+\subsection{Diagrama de Contexto}
+
+
+\section{Diseño e Implementación}
+
+\subsection{Diagrama de Clases}
+Con el objetivo de modularizar el código y procurar el encapsulamiento de cada parte, se decidió la implementación de las siguientes clases:
+\begin{itemize}
+\item Actualizador.java
+\item Componente.java
+\item FinalConcurrente.java
+\item Monitor.java
+\item PanelControl.java
+\item Proceso.java
+\item VentanaPanel.java
+\end{itemize}
+Se muestra a continuación el diagrama de clases y luego se desarrollará una breve descripción de las clases más importantes y se detallan los métodos más relevantes.
+\begin{figure}[H] % Example image
+\center{\includegraphics[width=\linewidth]{DiagramaDeClases}}
+\label{fig:DiagramaDeClases}
+\end{figure}
+\subsection{Actualizador}
+Es el hilo encargado de actualizar los valores de la pantalla, cada vez que se ejecuta un disparo. Recibe la nueva marca del sistema enviada por el proceso que realizo el disparo, a través de la implementación de Sockets. El actualizador ejecuta el método actualizar de la clase PanelControl con  esta nueva marca.
+\subsection{Monitor}
+Este objeto es el que se encarga de administrar los recursos del sistema, y determinando los disparos que sean posibles realizar para cada proceso. 
+Al inicializarse cargara la configuración del sistema desde un archivo, que contiene la matriz de incidencia. Y desde otro archivo leerá la marca inicial del sistema.
+Los métodos principales del monitor son verificarDisparo y solicitarDisparo:
+\begin{itemize}
+\item SolicitarDisparo():\\Este método es llamado por los procesos, se hace uso de los métodos lock() y unlock() para garantizar la exclusión mutua.
+Dentro de este método se llama a verificarDisparo(), que devolverá una lista con todos los disparos que son posibles de efectuarse en ese instante, de entre todos  los permitidos para el proceso.
+En caso de no haber disparos posibles, el proceso se duerme en la cola de condición. Si hay disparos posibles, se determina uno al azar, y se dispara actualizando la marca. Luego se despierta a los procesos que estén dormidos en la cola de condición, y por ultimo se libera la exclusión mutua con un unlock().
+Se retorna al proceso con una lista de dos elementos, el disparo ejecutado y la nueva marca.
+\item VerificarDisparo():\\Este método es llamado desde solicitarDisparo(), recibe un vector que indica las transiciones permitidas para el proceso. Determina cuales son factibles de realizarse, sin que se produzca algún problema de concurrencia (Interbloqueo, inanición). Y retorna una lista con todos los disparos que son posibles de realizarse.
+\end{itemize}
+\subsection{Proceso}
+Se crearan tres hilos que corresponderán a cada linea de producción. Al inicializarce leerán las transiciones que pueden ejecutar desde un archivo. Durante su ejecución solicitaran disparos al monitor, y una vez que el monitor les da los recursos ejecutan el método comunicar(), para que se actualice la interfaz gráfica.
+
+\subsection{Diagrama de Objetos}
+
+\subsection{Diagrama de Sequencia}
+A continuación se muestra el diagrama de sequencia de ejecución del proceso.
+\begin{figure}[H] % Example image
+\center{\includegraphics[width=\linewidth]{DiagramaDeSecuencia}}
+\label{fig:DiagramaDeSecuencia}
+\end{figure}
+
+\subsection{Diagrama de Estados}
+
+\subsection{Diagrama de Paquetes}
+
+\subsection{Patrón de Diseño adicional implementado}
+
+\subsection{Validación del Sistema y Pruebas}
+Para validar el sistema se usa el algoritmo iterativo de análisi de Sifones.
+Para ello se calculan en el simulador todos los sifones posibles. De todo el conjunto deben discriminarse otros subconjuntos:
+\begin{itemize}
+\item Conjunto de Sifones que tienen marca inicial distinta de cero.
+$$S_{CMI}=\left\{\forall s \in S / t\equiv 0 \wedge s\neq 0\right\}$$
+\item Conjunto de Sifones que tienen marca igual a cero al momento del bloqueo.
+$$S_{SMB}=\left\{\forall s \in S / t\equiv BLOQ \wedge s\equiv 0\right\}$$
+\end{itemize}
+La intersección de ambos conjuntos (Sifones que tenían marca al incio de la simulación y están vacíos al momento del bloqueo) son los sifones que deben controlarse o limitarse para poder asegurar la usencia de bloqueos.\\
+En el caso de nuestra implementación puede observarse una plaza adicional con marca inicial 3 (tres) que agregamos con este propósito. Así como comentamos en la sección de creación de la red de petri, puede interpretarse como un control necesario para el funcionamiento sin bloqueos.
+\begin{figure}[H] % Example image
+\center{\includegraphics[width=0.4\linewidth]{conjuntos}}
+\label{fig:conjuntos}
+\end{figure}
+
+\section{Pruebas Unitarias del Sistema}
+
+\subsection{Pruebas Automáticas}
+
+\subsection{Casos de Prueba del Sistema}
+\subsubsection{Contra los Requerimientos Funcionales del Sistema}
+\subsubsection{Contra los Requerimientos No Funcionales del Sistema}
+\subsection{Casos de Prueba Alternativos}
+
+\subsection{Smoke/Sanity Tests}
+
+\subsection{Matriz de Trazabilidad Actualizada}
+
+\subsection{Pass/Fail Ratio por tipo de Caso de Prueba}
+
+\subsection{Bugs Identificados y Corregidos}
+
+
+\section{Datos Históricos}
+
+
+\section{Información Adicional}
 %------------------------------------------------
-\section{Consigna}
+\subsection{Descripción del estado inicial del Proyecto (Consigna)}
 Sea una planta industrial donde se intenta producir tres tipos de piezas distintas mediante el uso de una celda de producción flexible que incluye tres robots, cuatro máquinas, tres almacenes de materiales y tres almacenes de piezas producidas.
 Debe tener en cuenta las siguientes reglas de producción para cada pieza:
 \begin{itemize}
@@ -182,64 +348,13 @@ Los encargados de transportar los materiales, productos intermedios y finales so
 	\end{itemize}
 \end{itemize}
 Se pide como consigna modelar el sistema con una red de petri, luego debe programarse la solución y emplearse un monitor para la sincronización de los procesos concurrentes.
-%------------------------------------------------
-\section{Clases}
-Con el objetivo de modularizar el código y procurar el encapsulamiento de cada parte, se decidió la implementación de las siguientes clases:
-\begin{itemize}
-\item Actualizador.java
-\item Componente.java
-\item FinalConcurrente.java
-\item Monitor.java
-\item PanelControl.java
-\item Proceso.java
-\item VentanaPanel.java
-\end{itemize}
-Se muestra a continuación el diagrama de clases y luego se desarrollará una breve descripción de las clases más importantes y se detallan los métodos más relevantes.
-\begin{figure}[H] % Example image
-\center{\includegraphics[width=\linewidth]{DiagramaDeClases}}
-\label{fig:DiagramaDeClases}
-\end{figure}
-\subsection{Actualizador}
-Es el hilo encargado de actualizar los valores de la pantalla, cada vez que se ejecuta un disparo. Recibe la nueva marca del sistema enviada por el proceso que realizo el disparo, a través de la implementación de Sockets. El actualizador ejecuta el método actualizar de la clase PanelControl con  esta nueva marca.
-\subsection{Monitor}
-Este objeto es el que se encarga de administrar los recursos del sistema, y determinando los disparos que sean posibles realizar para cada proceso. 
-Al inicializarse cargara la configuración del sistema desde un archivo, que contiene la matriz de incidencia. Y desde otro archivo leerá la marca inicial del sistema.
-Los métodos principales del monitor son verificarDisparo y solicitarDisparo:
-\begin{itemize}
-\item SolicitarDisparo():\\Este método es llamado por los procesos, se hace uso de los métodos lock() y unlock() para garantizar la exclusión mutua.
-Dentro de este método se llama a verificarDisparo(), que devolverá una lista con todos los disparos que son posibles de efectuarse en ese instante, de entre todos  los permitidos para el proceso.
-En caso de no haber disparos posibles, el proceso se duerme en la cola de condición. Si hay disparos posibles, se determina uno al azar, y se dispara actualizando la marca. Luego se despierta a los procesos que estén dormidos en la cola de condición, y por ultimo se libera la exclusión mutua con un unlock().
-Se retorna al proceso con una lista de dos elementos, el disparo ejecutado y la nueva marca.
-\item VerificarDisparo():\\Este método es llamado desde solicitarDisparo(), recibe un vector que indica las transiciones permitidas para el proceso. Determina cuales son factibles de realizarse, sin que se produzca algún problema de concurrencia (Interbloqueo, inanición). Y retorna una lista con todos los disparos que son posibles de realizarse.
-\end{itemize}
-\subsection{Proceso}
-Se crearan tres hilos que corresponderán a cada linea de producción. Al inicializarce leerán las transiciones que pueden ejecutar desde un archivo. Durante su ejecución solicitaran disparos al monitor, y una vez que el monitor les da los recursos ejecutan el método comunicar(), para que se actualice la interfaz gráfica.
-A continuación se muestra el diagrama de sequencia de ejecución del proceso.
-\begin{figure}[H] % Example image
-\center{\includegraphics[width=\linewidth]{DiagramaDeSecuencia}}
-\label{fig:DiagramaDeSecuencia}
-\end{figure}
 
-\section{Validación del Sistema y Pruebas}
-Para validar el sistema se usa el algoritmo iterativo de análisi de Sifones.
-Para ello se calculan en el simulador todos los sifones posibles. De todo el conjunto deben discriminarse otros subconjuntos:
-\begin{itemize}
-\item Conjunto de Sifones que tienen marca inicial distinta de cero.
-$$S_{CMI}=\left\{\forall s \in S / t\equiv 0 \wedge s\neq 0\right\}$$
-\item Conjunto de Sifones que tienen marca igual a cero al momento del bloqueo.
-$$S_{SMB}=\left\{\forall s \in S / t\equiv BLOQ \wedge s\equiv 0\right\}$$
-\end{itemize}
-La intersección de ambos conjuntos (Sifones que tenían marca al incio de la simulación y están vacíos al momento del bloqueo) son los sifones que deben controlarse o limitarse para poder asegurar la usencia de bloqueos.\\
-En el caso de nuestra implementación puede observarse una plaza adicional con marca inicial 3 (tres) que agregamos con este propósito. Así como comentamos en la sección de creación de la red de petri, puede interpretarse como un control necesario para el funcionamiento sin bloqueos.
-\begin{figure}[H] % Example image
-\center{\includegraphics[width=0.4\linewidth]{conjuntos}}
-\label{fig:conjuntos}
-\end{figure}
+
 %----------------------------------------------------------------------------------------
 %	CONCLUSION
 %----------------------------------------------------------------------------------------
 
-\section{Conclusión} % Major section
+\subsection{Conclusión} % Major section
 El desarrollo del presente trabajo práctico muestra una forma de implementación de una celda de producción flexible a partir del modelo en redes de petri y sincronización de los recursos mediante el uso de un monitor.
 Implementar la consigna nos permitió estudiar una alternativa de rápido desarrollo para la construcción de simulaciones.
 El uso de un vector de marcas sustituye y encapsula la gestión de los semáforos o condiciones de una forma limpia y sencilla.
