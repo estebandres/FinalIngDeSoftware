@@ -13,9 +13,7 @@ public class VANESAModel implements BeatModelInterface, Runnable {
 	
 	ArrayList beatObservers = new ArrayList();
 	ArrayList bpmObservers = new ArrayList();
-	int Hz = 0;
-	int sum = 0;
-	int count = 0;
+	int lectura = 0;
 	private static VANESAModel uniqueInstance = new VANESAModel();
 	
 	private VANESAModel(){
@@ -78,18 +76,27 @@ public class VANESAModel implements BeatModelInterface, Runnable {
 	    //Timer t = new Timer(); // I used a timer here, code is below
 	    while(true){
 	    byte[] bytes = new byte[line.getBufferSize() / 5];
-	    
+
+    	//System.out.println(line.getLevel());
 	    line.read(bytes, 0, bytes.length);
-	    int lectura=(calculateRMSLevel(bytes)-40)*2;
+	    lectura=(calculateRMSLevel(bytes)-40)*2;
+//	    lectura=calculateRMSLevel(bytes);
 	    System.out.println("RMS Level: " + lectura);	
 	    setBPM(lectura);
 	    try {
-			Thread.sleep(10000/lectura);
+			//Thread.sleep(100/lectura);
+	    	//long retardo=(long) Math.exp(1/(double)lectura);
+	    	//long retardo=120-lectura;
+	    	long retardo=(long)(10000/(lectura));
+	    	//long retardo=0;
+	    	System.out.println(retardo);
+	    	Thread.sleep(retardo);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	    notifyBeatObservers();
+	    line.flush();
 	    }
 	}
 //	------------------------- Fin Procesamiento de Audio -----------------------------------
@@ -109,14 +116,14 @@ public class VANESAModel implements BeatModelInterface, Runnable {
     	setBPM(0);
     }
  
-    public void setBPM(int Hz) {
-		this.Hz = Hz;
-		//sequencer.setTempoInHz(getBPM());
+    public void setBPM(int lectura) {
+		this.lectura = lectura;
+		//sequencer.setTempoInlectura(getBPM());
 		notifyBPMObservers();
     }
   
 	public int getBPM() {
-		return Hz;
+		return lectura;
 	}
      
 	public void registerObserver(BeatObserver o) {

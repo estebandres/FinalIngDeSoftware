@@ -3,11 +3,12 @@ package FinalIngSoft;
 public class VANESAController implements ControllerInterface {
 	BeatModelInterface model;
 	DJView view;
+	VANESAView vanesaView;
 	
 
 	public VANESAController(BeatModelInterface model) {
 		this.model = model;
-//		view = new DJView(this, new HeartAdapter(model));
+		vanesaView = new VANESAView(model);
 		view = new DJView(this, model);
         view.createView();
         view.createControls();
