@@ -78,18 +78,26 @@ public class VANESAModel implements BeatModelInterface, Runnable {
 	    //Timer t = new Timer(); // I used a timer here, code is below
 	    while(true){
 	    byte[] bytes = new byte[line.getBufferSize() / 5];
-	    
+
+    	//System.out.println(line.getLevel());
 	    line.read(bytes, 0, bytes.length);
-	    int lectura=(calculateRMSLevel(bytes)-40)*2;
+	    int lectura=(calculateRMSLevel(bytes)-45)*2;
 	    System.out.println("RMS Level: " + lectura);	
 	    setBPM(lectura);
 	    try {
-			Thread.sleep(10000/lectura);
+			//Thread.sleep(100/lectura);
+	    	//long retardo=(long) Math.exp(1/(double)lectura);
+	    	//long retardo=120-lectura;
+	    	long retardo=(long)(1000/(lectura));
+	    	//long retardo=0;
+	    	System.out.println(retardo);
+	    	Thread.sleep(retardo);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	    notifyBeatObservers();
+	    line.flush();
 	    }
 	}
 //	------------------------- Fin Procesamiento de Audio -----------------------------------
