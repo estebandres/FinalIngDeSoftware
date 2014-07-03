@@ -7,15 +7,27 @@ public class HeartModel implements HeartModelInterface, Runnable {
 	ArrayList bpmObservers = new ArrayList();
 	int time = 1000;
     int bpm = 90;
+    private static int cantInstancias;
 	Random random = new Random(System.currentTimeMillis());
-	Thread thread;
-
-	public HeartModel() {
-		thread = new Thread(this);
+	private static HeartModel uniqueInstance = new HeartModel();
+	
+	private HeartModel(){
+		Thread thread = new Thread(this);
 		thread.start();
+		cantInstancias = 0;
+	}
+	
+	public static HeartModel getInstance(){
+		cantInstancias++;
+		return uniqueInstance;
+	}
+	
+	public static int getCantInstancias(){
+		return	cantInstancias;
 	}
 
-	public void run() {
+
+  	public void run() {
 		int lastrate = -1;
 
 		for(;;) {
