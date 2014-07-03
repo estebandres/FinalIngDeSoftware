@@ -2,6 +2,7 @@ package FinalIngSoft;
     
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 
 public class DJView implements ActionListener,  BeatObserver, BPMObserver {
@@ -22,12 +23,28 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver {
     JMenu menu;
     JMenuItem startMenuItem;
     JMenuItem stopMenuItem;
+    JMenuBar menuBarModelSel;
+    JMenu	 menuModelSel;
+    JMenuItem DJTestDriveMenuItem;
+    JMenuItem VANESATestDriveMenuItem;
+    JMenuItem HeartTestDriveMenuItem;
 
     public DJView(ControllerInterface controller, BeatModelInterface model) {	
 		this.controller = controller;
 		this.model = model;
 		model.registerObserver((BeatObserver)this);
 		model.registerObserver((BPMObserver)this);
+    }
+    
+    public void setModel (ControllerInterface controller, BeatModelInterface model){
+    	this.controller.stop();
+    	this.model.removeObserver((BeatObserver)this);
+		this.model.removeObserver((BPMObserver)this);
+    	this.model=model;
+    	this.controller=controller;
+    	this.controller.start();
+    	this.model.registerObserver((BeatObserver)this);
+		this.model.registerObserver((BPMObserver)this);
     }
     
     public void createView() {
@@ -39,13 +56,42 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver {
         bpmOutputLabel = new JLabel("offline", SwingConstants.CENTER);
 		beatBar = new BeatBar();
 		beatBar.setValue(0);
-        JPanel bpmPanel = new JPanel(new GridLayout(2, 1));
+		menuBarModelSel = new JMenuBar();
+        menuModelSel = new JMenu("ModelSel");
+        menuBarModelSel.add(menuModelSel);
+        JPanel bpmPanel = new JPanel(new GridLayout(3, 1));
+        bpmPanel.add(menuBarModelSel);
 		bpmPanel.add(beatBar);
         bpmPanel.add(bpmOutputLabel);
         viewPanel.add(bpmPanel);
         viewFrame.getContentPane().add(viewPanel, BorderLayout.CENTER);
         viewFrame.pack();
         viewFrame.setVisible(true);
+        
+        DJTestDriveMenuItem = new JMenuItem("DJTestDrive");
+        menuModelSel.add(DJTestDriveMenuItem);
+        DJTestDriveMenuItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+            	BeatModelInterface modelB = new BeatModel();
+                setModel(new BeatController(modelB),modelB);
+            }
+        });
+        VANESATestDriveMenuItem = new JMenuItem("VANESATestDrive");
+        menuModelSel.add(VANESATestDriveMenuItem); 
+        VANESATestDriveMenuItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+            	VANESAModel modelV = VANESAModel.getInstance();
+                setModel(new VANESAController(modelV),modelV);
+            }
+        });
+        HeartTestDriveMenuItem = new JMenuItem("HeartTestDrive");
+        menuModelSel.add(HeartTestDriveMenuItem); 
+        HeartTestDriveMenuItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+            	HeartModel heartModel = HeartModel.getInstance();
+            	setModel(new HeartController(heartModel),new HeartAdapter(heartModel));
+            }            
+        });
 	}
   
   
@@ -80,6 +126,7 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver {
                 System.exit(0);
             }
         });
+        
 
         menu.add(exit);
         menuBar.add(menu);
