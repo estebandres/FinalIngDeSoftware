@@ -1,6 +1,10 @@
-package FinalIngSoft;
+package Modelos;
   
 import javax.sound.midi.*;
+
+import Vistas.BPMObserver;
+import Vistas.BeatObserver;
+
 import java.util.*;
 
 public class BeatModel implements BeatModelInterface, MetaEventListener {

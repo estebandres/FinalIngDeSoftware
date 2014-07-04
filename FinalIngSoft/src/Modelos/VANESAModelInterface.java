@@ -1,6 +1,9 @@
-package FinalIngSoft;
+package Modelos;
 
 import javax.sound.sampled.AudioFormat;
+
+import Vistas.BPMObserver;
+import Vistas.BeatObserver;
 
 public interface VANESAModelInterface {
 	void initialize();  

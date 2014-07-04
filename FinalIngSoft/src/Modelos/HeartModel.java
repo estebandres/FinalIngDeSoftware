@@ -1,6 +1,9 @@
-package FinalIngSoft;
+package Modelos;
 
 import java.util.*;
+
+import Vistas.BPMObserver;
+import Vistas.BeatObserver;
 
 public class HeartModel implements HeartModelInterface, Runnable {
 	ArrayList beatObservers = new ArrayList();

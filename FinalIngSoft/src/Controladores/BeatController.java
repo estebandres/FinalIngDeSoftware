@@ -1,4 +1,7 @@
-package FinalIngSoft;
+package Controladores;
+
+import Modelos.BeatModelInterface;
+import Vistas.DJView;
   
 public class BeatController implements ControllerInterface {
 	BeatModelInterface model;

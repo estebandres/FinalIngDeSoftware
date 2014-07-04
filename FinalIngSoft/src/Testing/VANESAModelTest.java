@@ -10,14 +10,14 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import FinalIngSoft.BeatModelInterface;
-import FinalIngSoft.VANESAModel;
+import Modelos.BeatModelInterface;
+import Modelos.VANESAModel;
 
 public class VANESAModelTest {
 
 	VANESAModel vanesaModelTest;
 	byte[] sample;
-	
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -42,14 +42,14 @@ public class VANESAModelTest {
 		BeatModelInterface resultado = VANESAModel.getInstance();
 		assertEquals(vanesaModelTest,resultado);
 	}
-	
+
 	@Test
 	public void testRMS(){
 		int resultado = vanesaModelTest.calculateRMSLevel(sample);
 		int esperado = 25;
 		assertEquals(esperado,resultado);		
 	}
-	
+
 	@Test
 	public void testFormat(){
 		AudioFormat resultado = vanesaModelTest.getAudioFormat();

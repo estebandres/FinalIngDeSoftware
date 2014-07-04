@@ -1,4 +1,7 @@
-package FinalIngSoft;
+package Modelos;
+
+import Vistas.BPMObserver;
+import Vistas.BeatObserver;
 
 public class HeartAdapter implements BeatModelInterface {
 	HeartModelInterface heart;

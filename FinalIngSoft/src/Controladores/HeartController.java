@@ -1,4 +1,9 @@
-package FinalIngSoft;
+package Controladores;
+
+import Modelos.HeartAdapter;
+import Modelos.HeartModel;
+import Modelos.HeartModelInterface;
+import Vistas.DJView;
   
 public class HeartController implements ControllerInterface {
 	HeartModelInterface model;

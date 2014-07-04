@@ -1,4 +1,4 @@
-package FinalIngSoft;
+package Vistas;
   
 import javax.swing.*;
 

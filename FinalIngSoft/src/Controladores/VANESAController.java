@@ -1,4 +1,8 @@
-package FinalIngSoft;
+package Controladores;
+
+import Modelos.BeatModelInterface;
+import Vistas.DJView;
+import Vistas.VANESAView;
 
 public class VANESAController implements ControllerInterface {
 	BeatModelInterface model;

@@ -1,9 +1,19 @@
-package FinalIngSoft;
+package Vistas;
     
 import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
+
+import Controladores.BeatController;
+import Controladores.ControllerInterface;
+import Controladores.HeartController;
+import Controladores.VANESAController;
+import Modelos.BeatModel;
+import Modelos.BeatModelInterface;
+import Modelos.HeartAdapter;
+import Modelos.HeartModel;
+import Modelos.VANESAModel;
 
 public class DJView implements ActionListener,  BeatObserver, BPMObserver {
 	BeatModelInterface model;

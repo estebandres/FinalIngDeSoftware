@@ -1,5 +1,15 @@
 package FinalIngSoft;
 
+import Controladores.BeatController;
+import Controladores.ControllerInterface;
+import Controladores.HeartController;
+import Controladores.VANESAController;
+import Modelos.BeatModel;
+import Modelos.BeatModelInterface;
+import Modelos.HeartModel;
+import Modelos.VANESAModel;
+import Vistas.DJView;
+
 public class TestDrive {
 	static DJView viewH;
 	static DJView viewB;

@@ -1,5 +1,11 @@
 package FinalIngSoft;
 
+import Controladores.ControllerInterface;
+import Controladores.VANESAController;
+import Modelos.BeatModelInterface;
+import Modelos.VANESAModel;
+import Vistas.DJView;
+
 public class VANESATestDrive {
 	static DJView view;
 	public static void main (String[] args) {

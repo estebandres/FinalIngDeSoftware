@@ -1,4 +1,9 @@
 package FinalIngSoft;
+
+import Controladores.ControllerInterface;
+import Controladores.HeartController;
+import Modelos.HeartModel;
+import Vistas.DJView;
   
 public class HeartTestDrive {
 	static DJView view;

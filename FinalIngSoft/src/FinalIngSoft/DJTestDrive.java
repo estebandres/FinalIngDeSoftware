@@ -1,4 +1,10 @@
 package FinalIngSoft;
+
+import Controladores.BeatController;
+import Controladores.ControllerInterface;
+import Modelos.BeatModel;
+import Modelos.BeatModelInterface;
+import Vistas.DJView;
   
 public class DJTestDrive {
 	static DJView view;

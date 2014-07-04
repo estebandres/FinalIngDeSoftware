@@ -1,4 +1,4 @@
-package FinalIngSoft;
+package Vistas;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JProgressBar;
 import javax.swing.UIManager;
+
+import Modelos.BeatModelInterface;
 
 public class VANESAView extends JFrame implements BeatObserver, BPMObserver{
 		BeatModelInterface model;

@@ -1,4 +1,4 @@
-package FinalIngSoft;
+package Modelos;
 
 import java.util.ArrayList;
 
@@ -7,6 +7,9 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.TargetDataLine;
+
+import Vistas.BPMObserver;
+import Vistas.BeatObserver;
 
 
 public class VANESAModel implements BeatModelInterface, Runnable {
