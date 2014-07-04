@@ -6,14 +6,18 @@ public class VANESAController implements ControllerInterface {
 	VANESAView vanesaView;
 	
 
-	public VANESAController(BeatModelInterface model) {
+	public VANESAController(BeatModelInterface model,DJView v) {
 		this.model = model;
 		vanesaView = new VANESAView(model);
+		if(v!=null){
+			view = v;}
+		else{
 		view = new DJView(this, model);
         view.createView();
         view.createControls();
 		view.disableStopMenuItem();
 		view.disableStartMenuItem();
+		}
 	}
   
 	public void start() {

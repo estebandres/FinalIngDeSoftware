@@ -28,10 +28,12 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver {
     JMenuItem DJTestDriveMenuItem;
     JMenuItem VANESATestDriveMenuItem;
     JMenuItem HeartTestDriveMenuItem;
+    DJView auxView;
 
     public DJView(ControllerInterface controller, BeatModelInterface model) {	
 		this.controller = controller;
 		this.model = model;
+		auxView = this;
 		model.registerObserver((BeatObserver)this);
 		model.registerObserver((BPMObserver)this);
     }
@@ -73,7 +75,7 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver {
         DJTestDriveMenuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
             	BeatModelInterface modelB = new BeatModel();
-                setModel(new BeatController(modelB),modelB);
+                setModel(new BeatController(modelB,auxView),modelB);
             }
         });
         VANESATestDriveMenuItem = new JMenuItem("VANESATestDrive");
@@ -81,7 +83,7 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver {
         VANESATestDriveMenuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
             	VANESAModel modelV = VANESAModel.getInstance();
-                setModel(new VANESAController(modelV),modelV);
+                setModel(new VANESAController(modelV,auxView),modelV);
             }
         });
         HeartTestDriveMenuItem = new JMenuItem("HeartTestDrive");
@@ -89,7 +91,7 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver {
         HeartTestDriveMenuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
             	HeartModel heartModel = HeartModel.getInstance();
-            	setModel(new HeartController(heartModel),new HeartAdapter(heartModel));
+            	setModel(new HeartController(heartModel,auxView),new HeartAdapter(heartModel));
             }            
         });
 	}

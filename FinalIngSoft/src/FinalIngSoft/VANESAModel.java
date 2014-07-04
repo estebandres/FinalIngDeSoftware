@@ -89,7 +89,7 @@ public class VANESAModel implements BeatModelInterface, Runnable {
 	    	//long retardo=120-lectura;
 	    	long retardo=(long)(10000/(lectura));
 	    	//long retardo=0;
-	    	System.out.println(retardo);
+//	    	System.out.println(retardo);
 	    	Thread.sleep(retardo);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
@@ -159,6 +159,5 @@ public class VANESAModel implements BeatModelInterface, Runnable {
 			beatObservers.remove(i);
 		}
 	}
-
 	
 }
