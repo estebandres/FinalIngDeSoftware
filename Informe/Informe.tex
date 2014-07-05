@@ -7,7 +7,7 @@
 %
 % Note:
 % The %\lipsum[#] commands throughout this template generate dummy text
-% to fill the template out. These commands should all be removed when 
+% to fill the template out. These commands should all be removed when
 % writing essay content.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -21,7 +21,7 @@
 \usepackage[spanish]{babel}%Para el español
 \usepackage[utf8]{inputenc}%para los acentos
 \usepackage{amsmath,amssymb,amsfonts,amsthm}
-\usepackage{graphicx}
+%\usepackage{graphicx}
 \usepackage{bbm}
 \usepackage{textcomp}
 \usepackage{amstext}
@@ -40,41 +40,13 @@
 
 \graphicspath{{Imagenes/}} % Specifies the directory where pictures are stored
 
-%\usepackage{tikz}
-%%%<
-%\usepackage[spanish]{babel}%Para el español
-%\usepackage[utf8]{inputenc}
-%\usepackage{verbatim}
-\usepackage{listings}
-%\usepackage{xcolor}
-
-
-%\usepackage{times}
- 
-%\definecolor{dkgreen}{rgb}{0,0.6,0}
-
-\lstset{
-	language=C,
-	literate=%
-	{á}{{\'{a}}}1
-	{é}{{\'{e}}}1
-	{í}{{\'{i}}}1
-	{ó}{{\'{o}}}1
-	{ú}{{\'{u}}}1
-	{ñ}{{\~{n}}}1
-	{<}{{$<$}}1
-	{>}{{$>$}}1,
-	basicstyle=\footnotesize\ttfamily,
-	keywordstyle=\bfseries, 
-	comment=[l]{\;},%
-	breaklines=true,
-	prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
-    }
-
 \usepackage{framed}
 \usepackage{tabularx,colortbl}
 \usepackage{adjustbox}
 \usepackage{pdflscape}
+
+\newcommand{\comillas}[1]{``#1''}
+\usepackage{csquotes}
 
 \begin{document}
 
@@ -129,41 +101,39 @@ Ing. Martín \textsc{Miceli}
 
 \tableofcontents % Include a table of contents
 
-\newpage % Begins the essay on a new page instead of on the same page as the table of contents 
+\newpage % Begins the essay on a new page instead of on the same page as the table of contents
 
 %----------------------------------------------------------------------------------------
 %	INTRODUCTION
 %----------------------------------------------------------------------------------------
 
 \begin{abstract}
-En el presente informe se expone el desarrollo del trabajo final para la cátedra Ingeniería de Software que se cursa en el primer cuatrimestre del cuarto año de la carrera Ingeniería en Computación en la Facultad de Ciencias Exáctas, Físicas y Naturales de la Universidad Nacional de Córdoba, Argentina. 
+En el presente informe se expone el desarrollo del trabajo final para la cátedra Ingeniería de Software que se cursa en el primer cuatrimestre del cuarto año de la carrera Ingeniería en Computación en la Facultad de Ciencias Exáctas, Físicas y Naturales de la Universidad Nacional de Córdoba, Argentina.
 Este trabajo está basado en el ejemplo del Libro Head First design Patterns en la página 526 a 548 (DJView).
 \end{abstract} % Major section
 
 \section{Consignas}
 \begin{itemize}
-\item Modificar la clase HeartModel para que sólo se pueda crear una instancia (usando el patrón 
-Singleton) y extienderla ventana de control del BeatController para “tratar” de generar nuevas 
-instancias cada vez que se clickea en el  botton “$>>$”. La ventana de  la BeatBar debería mostrar 
-en texto el número de intentos de creación de un nuevo HeartBeat model en el texto donde se 
+\item Modificar la clase \verb+HeartModel+ para que sólo se pueda crear una instancia (usando el patrón
+\textit{Singleton}) y extender la ventana de control del \verb+BeatController+ para \comillas{tratar} de generar nuevas
+instancias cada vez que se clickea en el  botón $>>$. La ventana de  la \verb+BeatBar+ debería mostrar
+en texto el número de intentos de creación de un nuevo \verb+HeartBeatModel+ en el texto donde se
 mostraba la frecuencia cardíaca.
 
-\item Crear un nuevo modelo con su controlador específico que pueda usarse para verse desde la 
-vista DJView en la ventana BeatBar. Generar un java main class para poder ejecutar tal 
-modificación llamándolo \verb+“My<modelName>TestDrive.java”+ (similar to “HeartTestDrive”). Se 
+\item Crear un nuevo modelo con su controlador específico que pueda usarse para verse desde la
+vista \verb+DJView+ en la ventana \verb+BeatBar+. Generar un java main class para poder ejecutar tal
+modificación llamándolo \verb+My<modelName>TestDrive.java+ (similar to \verb+HeartTestDrive+). Se
 proveerán puntos adicionales por la originalidad del modelo creado.
 
-\item Generar una vista propia que permita usar su modelo sin modificar el código existente del 
-ejemplo pero que permita mostrar los cambios gráficamente y por medio de texto (similar al 
-BeatBar que muestra el ritmo con una barra y la frecuencia en texto).  
+\item Generar una vista propia que permita usar su modelo sin modificar el código existente del
+ejemplo pero que permita mostrar los cambios gráficamente y por medio de texto (similar al
+\verb+BeatBar+ que muestra el ritmo con una barra y la frecuencia en texto).
 
-\item Generar un TestDrive que permita mostrar a los tres modelos trabajando al mismo tiempo (se 
-esperarán ver al menos 3 ventanas BeatBar con los 3 modelos andando simultáneamente.
+\item Generar un \verb+TestDrive+ que permita mostrar a los tres modelos trabajando al mismo tiempo (se
+esperarán ver al menos 3 ventanas \verb+BeatBar+ con los 3 modelos andando simultáneamente.
 
-\item Modificar la vista BeatBar para que permita cambiar gráficamente en tiempo de ejecución (ej. 
-Mediante un dropdown box) el modelo usado (el Beat model, el Nuevo modelo y el Heartbeat 
-model). Por favor use para tal implementación el patrón strategy. Generar un TestDrive que 
-permita ejecutar tal acción. 
+\item Modificar la vista \verb+BeatBar+ para que permita cambiar gráficamente en tiempo de ejecución (ej.
+Mediante un dropdown box) el modelo usado (el \verb+BeatModel+, el Nuevo modelo y el \verb+HeartBeatModel+). Por favor use para tal implementación el patrón \textit{Strategy}. Generar un \verb+TestDrive+ que permita ejecutar tal acción.
 
 \end{itemize}
 
@@ -185,7 +155,7 @@ Ver detalle en sección 6. %~\ref{sec:Diseño e Implementación}
 Ver detalle en sección 7.%~\{sec:Pruebas Unitarias del Sistema}
 
 \subsection{Vínculo a las fuentes del proyecto}
-La dirección web del Repositorio del Proyecto es: "\textit{https://github.com/Andresteve07/FinalIngDeSoftware}".
+La dirección web del Repositorio del Proyecto es: \textit{https://github.com/Andresteve07/FinalIngDeSoftware}.
 
 \section{Manejo de Configuraciones}
 
@@ -206,21 +176,21 @@ Para la realización de SCM hay diferentes herramientas. Pero herramientas que p
 Por esa razón ofrece una mayor flexibilidad una solución que integre herramientas parciales que sean más fáciles de integrar en el proceso existente.
 
 \subsection{Herramienta de Control de Versiones}
-Para el control de versiones del software que se implemento como consigna del siguiente trabajo final se uso la herramienta de versiones distribuidas y manejo de código fuente "Git". Adicionalmente se respaldó el repositorio en "Github" el cual tiene dirección en: "\textit{https://github.com/Andresteve07/FinalIngDeSoftware}"
+Para el control de versiones del software que se implemento como consigna del siguiente trabajo final se uso la herramienta de versiones distribuidas y manejo de código fuente %\comillas{Git}. El repositorio se encuentra alojado en %\comillas{github} y puede descargarse desde \textit{https://github.com/Andresteve07/FinalIngDeSoftware}
 
 \subsection{Sobre los Directorios}
 El repositorio cuenta con tres (3) directorios:
 \begin{itemize}
-\item FinalIngSoft: Este directorio es donde se aloja el proyecto de software desarrollado en la IDE "Eclipse KEPLER" en el lenguaje de programación "JAVA".
+\item FinalIngSoft: Este directorio es donde se aloja el proyecto de software desarrollado en la %\comillas{IDE Eclipse KEPLER} en el lenguaje de programación \verb+JAVA+.
 \item Informes: En este directorio se encuentra el código fuente escrito en \LaTeX del informe para el trabajo final, un archivo de compilación en PDF y un subdirectorio de imágenes utilizadas.
-\item Modelos: Este directorio contiene los proyectos que se realizaron para el modelado UML del software implementado mediante el uso de la herramienta de pago "Visual Paradigm\circledR".
+\item Modelos: Este directorio contiene los proyectos que se realizaron para el modelado UML del software implementado mediante el uso de la herramienta de pago \verb+Visual Paradigm+\circledR.
 \end{itemize}
 
 \subsection{Etiquetado y Nombramiento de Archivos}
 Se decidió del siguiente estándar para el etiquetado y nombramiento del archivos para el proyecto de software:
 \begin{itemize}
 \item Para los archivos de código fuente escritos en JAVA se adhiere a la costumbre de iniciales en mayúsculas sin espacios.
-\item Para las etiquetas sobre las versiones del software se usa la plantilla: "\textsc{vX.Y.Z; con X: Major Version, Y:Minor Version, Z:Patches}"
+\item Para las etiquetas sobre las versiones del software se usa la plantilla: \textsc{vX.Y.Z; con X: Major Version, Y:Minor Version, Z:Patches}
 \end{itemize}
 
 \subsection{Plan del Esquema de Ramas}
@@ -253,13 +223,13 @@ Como política de mergeo se decidió que cada desarrollador tenga un fork (o bif
 Forma de entrega de los releases, instrucciones mínimas de instalación y formato de entrega.
 
 \subsubsection{Forma de Entrega}
-Una vez conseguida una versión estable el CM generará la etiqueta pertinente respetando el estándar mencionado en la sección 3.4.%~\ref{sec:Etiquetado y Nombramiento de Archivos}. 
+Una vez conseguida una versión estable el CM generará la etiqueta pertinente respetando el estándar mencionado en la sección 3.4.%~\ref{sec:Etiquetado y Nombramiento de Archivos}.
 
 \subsubsection{Instrucciones de Instalación}
 Dentro del repositorio se encuentra un archivo Readme.txt que explica en forma simple y pocos pasos la instalación y ejecución de un release específico.
 
 \subsubsection{Formato de Entrega}
-Se adjuntará al directorio "Releases" dentro del repositorio un archivo con el formato "r\_vX.Y.Z.sh" que es un script de ejecución para un intérprete de bash de Linux.
+Se adjuntará al directorio \verb+Releases/+ dentro del repositorio un archivo con el formato \verb+r\_vX.Y.Z.sh+ que es un script de ejecución para un intérprete de bash de Linux.
 
 \subsection{Integrantes}
 Listado y forma de contacto de los integrantes del equipo, así como sus roles en la CCB. También incluir periodicidad de las reuniones y miembros obligatorios.
@@ -279,7 +249,10 @@ Para el seguimiento de los errores se utilizó el sistema de gestión de issues 
 
 
 \section{Requerimientos}
-Como parte del REQ\_FUN\_004, denominamos a la nueva clase My<modelName>TestDrive.java como VANESATestDrive; donde VANESA es una sigla que significa: "Visualizador del ANálisis del ESpectro de Audio". A continuación se presentan tres (3) imágenes que exponen lo requerimientos funcionales y no funcionales detectados y su estado al final de la implementación:
+Como parte del \verb+REQ\_FUN\_004+, denominamos a la nueva clase
+\verb+My<modelName>TestDrive.java+ como \verb+VANESATestDrive+
+donde VANESA es un acrónimo para: %\comillas{Visualizador del ANálisis del ESpectro de Audio}.
+A continuación se presentan tres (3) imágenes que exponen lo requerimientos funcionales y no funcionales detectados y su estado al final de la implementación:
 
 \begin{figure}[H] % Example image
 \center{\includegraphics[width=\linewidth]{Diagrama_de_Requerimientos1a}}
@@ -300,7 +273,7 @@ Como parte del REQ\_FUN\_004, denominamos a la nueva clase My<modelName>TestDriv
 En esta sección se muestra el diagrama de casos de usos que surgió de la interpretación preliminar de la consigna:
 
 \begin{figure}[H] % Example image
-\center{\includegraphics[width=\linewidth]{CasoDeUso}}
+\center{\includegraphics[width=0.5\linewidth]{CasoDeUso}}
 \label{fig:CasoDeUso}
 \end{figure}
 
@@ -334,7 +307,7 @@ El software implementa una estricta arquitectura de MVC (Model View Controller).
 El Patrón de arquitectura MVC es generalmente representada como:
 
 \begin{figure}[H] % Example image
-\center{\includegraphics[width=\linewidth]{GenericMVC}}
+\center{\includegraphics[width=0.5\linewidth]{GenericMVC}}
 \label{fig:GenericMVC}
 \end{figure}
 
@@ -342,15 +315,15 @@ El Patrón de arquitectura MVC es generalmente representada como:
 
 \subsection{Patrón de Arquitectura}
 El marco de trabajo MVC propuesto originalmente en la década de los 80 como una aproximación al diseño de GU que permitió múltiples presentaciones de un objeto y estilos independientes de interacción de cada una de estas presentaciones.El marco MVC soporta la presentación de los datos de diferentes formas e interacciones independientes con cada una de estas presentaciones. Cuando los datos se modifican a través de una de las presentaciones, el resi de las presentaciones son actualizadas.
-Los marcos de trabajo son a menudo instanciaciones de varios patrones. Por ejemplo, el marco MVC incluye el patrón Observer, el patrón Strategy relacionado con la actualización del modelo, el patrón Composite y otros patrones descritos por Gamma y colaboradores(Gammaetal.,1995). 
-Las aplicaciones construidas utilizando marcos de trabajo pueden ser las bases para una posterior reutilización a través del concepto de líneas de productos software o familias de aplicaciones. Debido a que estas aplicaciones se construyen utilizando un marco, se simplifica la modificación de miembros de la familia para crear nuevos miembros. 
+Los marcos de trabajo son a menudo instanciaciones de varios patrones. Por ejemplo, el marco MVC incluye el patrón Observer, el patrón Strategy relacionado con la actualización del modelo, el patrón Composite y otros patrones descritos por Gamma y colaboradores(Gammaetal.,1995).
+Las aplicaciones construidas utilizando marcos de trabajo pueden ser las bases para una posterior reutilización a través del concepto de líneas de productos software o familias de aplicaciones. Debido a que estas aplicaciones se construyen utilizando un marco, se simplifica la modificación de miembros de la familia para crear nuevos miembros.
 El problema fundamental con los marcos de trabajo es su complejidad inherente y el tiempo que lleva aprender a utilizarlos. Pueden requerirse varios meses para comprender completamente el marco de trabajo, por lo que es muy probable que, en organizaciones grandes, algunos ingenieros de software se conviertan en especialistas en marcos de trabajo. No hay duda de que ésta es una aproximación efectiva para la reutilización, pero es muy elevado el coste que supone introducirla en los procesos de desarrollo del software.
 
 \subsection{UML de Despliegue}
 En esta sección se muestra el diagrama de despliegue que surgió de la interpretación preliminar de la consigna:
 
 \begin{figure}[H] % Example image
-\center{\includegraphics[width=\linewidth]{DiagramaDeDespliegue_Pre}}
+\center{\includegraphics[width=0.6\linewidth]{DiagramaDeDespliegue_Pre}}
 \label{fig:DiagramaDeDespliegue_Pre}
 \end{figure}
 
@@ -370,77 +343,66 @@ A continuación se presenta una imagen que modela el diagrama de componentes tal
 \subsection{Diagrama de Clases}
 Con el objetivo de modularizar el código y procurar el encapsulamiento de cada parte, se decidió la implementación de las siguientes clases:
 \begin{itemize}
-\item Actualizador.java
-\item Componente.java
-\item FinalConcurrente.java
-\item Monitor.java
-\item PanelControl.java
-\item Proceso.java
-\item VentanaPanel.java
-
 \item Controladores
-\begin{itemize}
-\item /FinalIngSoft/src/Controladores/BeatController.java
-\item /FinalIngSoft/src/Controladores/ControllerInterface.java
-\item /FinalIngSoft/src/Controladores/HeartController.java
-\item /FinalIngSoft/src/Controladores/VANESAController.java
+  \begin{itemize}
+    \item \verb+/FinalIngSoft/src/Controladores/BeatController.java+
+    \item \verb+/FinalIngSoft/src/Controladores/ControllerInterface.java+
+    \item \verb+/FinalIngSoft/src/Controladores/HeartController.java+
+    \item \verb+/FinalIngSoft/src/Controladores/VANESAController.java+
+  \end{itemize}
 
-\end{itemize}
 \item FinalIngSoft
-\begin{itemize}
-\item /FinalIngSoft/src/FinalIngSoft/DJTestDrive.java
-\item /FinalIngSoft/src/FinalIngSoft/HeartTestDrive.java
-\item /FinalIngSoft/src/FinalIngSoft/TestDrive.java
-\item /FinalIngSoft/src/FinalIngSoft/VANESATestDrive.java
-\item /FinalIngSoft/src/FinalIngSoft/VANESAViewTest.java
+  \begin{itemize}
+    \item \verb+/FinalIngSoft/src/FinalIngSoft/DJTestDrive.java+
+    \item \verb+/FinalIngSoft/src/FinalIngSoft/HeartTestDrive.java+
+    \item \verb+/FinalIngSoft/src/FinalIngSoft/TestDrive.java+
+    \item \verb+/FinalIngSoft/src/FinalIngSoft/VANESATestDrive.java+
+    \item \verb+/FinalIngSoft/src/FinalIngSoft/VANESAViewTest.java+
+  \end{itemize}
 
-\end{itemize}
 \item Modelos
-\begin{itemize}
-\item /FinalIngSoft/src/Modelos/BeatModel.java
-\item /FinalIngSoft/src/Modelos/BeatModelInterface.java
-\item /FinalIngSoft/src/Modelos/HeartAdapter.java
-\item /FinalIngSoft/src/Modelos/HeartModel.java
-\item /FinalIngSoft/src/Modelos/HeartModelInterface.java
-\item /FinalIngSoft/src/Modelos/VANESAModel.java
-\item /FinalIngSoft/src/Modelos/VANESAModelInterface.java
-
-\end{itemize}
+  \begin{itemize}
+    \item \verb+/FinalIngSoft/src/Modelos/BeatModel.java+
+    \item \verb+/FinalIngSoft/src/Modelos/BeatModelInterface.java+
+    \item \verb+/FinalIngSoft/src/Modelos/HeartAdapter.java+
+    \item \verb+/FinalIngSoft/src/Modelos/HeartModel.java+
+    \item \verb+/FinalIngSoft/src/Modelos/HeartModelInterface.java+
+    \item \verb+/FinalIngSoft/src/Modelos/VANESAModel.java+
+    \item \verb+/FinalIngSoft/src/Modelos/VANESAModelInterface.java+
+  \end{itemize}
 \item Testing
-\begin{itemize}
-\item /FinalIngSoft/src/Testing/VANESAModelTest.java
-
-\end{itemize}
+  \begin{itemize}
+    \item \verb+/FinalIngSoft/src/Testing/VANESAModelTest.java+
+  \end{itemize}
 \item Vistas
-\begin{itemize}
-\item /FinalIngSoft/src/Vistas/BeatBar.java
-\item /FinalIngSoft/src/Vistas/BeatObserver.java
-\item /FinalIngSoft/src/Vistas/BPMObserver.java
-\item /FinalIngSoft/src/Vistas/DJView.java
-\item /FinalIngSoft/src/Vistas/VANESAView.java
+  \begin{itemize}
+    \item \verb+/FinalIngSoft/src/Vistas/BeatBar.java+
+    \item \verb+/FinalIngSoft/src/Vistas/BeatObserver.java+
+    \item \verb+/FinalIngSoft/src/Vistas/BPMObserver.java+
+    \item \verb+/FinalIngSoft/src/Vistas/DJView.java+
+    \item \verb+/FinalIngSoft/src/Vistas/VANESAView.java+
+  \end{itemize}
 
 \end{itemize}
 
-
-\end{itemize}
 Se muestra a continuación el diagrama de clases y luego se desarrollará una breve descripción de las nuevas clases e interfaces implementadas y se detallarán sus métodos más relevantes.
-\textit{Imagen demasiado grande para el tamaño de la hoja. Por favor ver "ReverseEngineeringFinalIngSoft\_FINAL.jpg" en el directorio de Imagenes.}
+%\textit{Imagen demasiado grande para el tamaño de la hoja. Por favor ver ReverseEngineeringFinalIngSoft\_FINAL.jpg en el directorio de Imagenes.}
 
 \subsection{VANESAController.java}
-Esta clase está encargada de tomar los datos de la View, (de acuerdo a la estrategia MVC), los procesa y con ellos ejecuta funciones del VANESAModel, logrando así la interacción desde el View, pasando por el Controller hasta el Model.
+Esta clase está encargada de tomar los datos de la View, (de acuerdo al modelo MVC), los procesa y con ellos ejecuta funciones del \verb+VANESAModel+, logrando así la interacción desde el View, pasando por el Controller hasta el Model.
 
 \subsection{TestDrive.java}
-Esta clase fue implementada para poder satisfacer el REQ\_FUN\_006, denominado "MultiTestDrive". Su objetivo, es ejecutar y mostrar simultaneamente los tres (3) modelos que posee el proyecto de software.
+Esta clase fue implementada para poder satisfacer el \verb+REQ\_FUN\_006+, denominado \comillas{MultiTestDrive}. Su objetivo, es ejecutar y mostrar simultáneamente los tres (3) modelos que posee el proyecto de software.
 
 \subsection{VANESATestDrive.java}
-Esta clase crea un modelo del tipo VANESAModel, el cual luego asocia a un controlador específico (VANESAController), y con los cuales mostrará las vistas correspondientes solicitadas.
+Esta clase crea un modelo del tipo \verb+VANESAModel+, el cual luego asocia a un controlador específico (VANESAController), y con los cuales mostrará las vistas correspondientes solicitadas.
 
 \subsection{VANESAModel.java}
-Esta clase es un hilo que representa el comportamiento descrito por el REQ\_FUN\_004 y sus requerimientos derivados. Sus clases mas importantes son:
+Esta clase es un hilo que representa el comportamiento descrito por el \verb+REQ\_FUN\_004+ y sus requerimientos derivados. Sus clases mas importantes son:
 \begin{itemize}
-\item calculateRMSLevel : int: Calcula y devuelva el valor eficaz de un vector del tipo byte. 
-\item getAudioFormat : AudioFormat: Define la frecuencia de muestreo, el tamaño en bits del vector, el número de canales y otras variables y devuelve un nuevo objeto AudioFormat con el cual se realizará la captura de audio del micrófono.
-\item run : void: Lee la información de audio de la línea de entrada del buffer. Luego se calcula el valor RMS del arreglo de bytes y con él genera una lectura que representa el volumen de la entrada por micrófono. Finalmente se notifica a todos los observadores. Cabe aclarar que al momento de notificar al BeatBar, este se hace cada un período mayor cuanto menor sea el volumen leído.
+\item \verb+calculateRMSLevel : int:+ Calcula y devuelva el valor eficaz de un vector del tipo byte.
+\item \verb+getAudioFormat : AudioFormat:+ Define la frecuencia de muestreo, el tamaño en bits del vector, el número de canales y otras variables y devuelve un nuevo objeto AudioFormat con el cual se realizará la captura de audio del micrófono.
+\item \verb+run : void:+ Lee la información de audio de la línea de entrada del buffer. Luego se calcula el valor RMS del arreglo de bytes y con él genera una lectura que representa el volumen de la entrada por micrófono. Finalmente se notifica a todos los observadores. Cabe aclarar que al momento de notificar al BeatBar, este se hace cada un período mayor cuanto menor sea el volumen leído.
 \end{itemize}
 
 \subsection{VANESAModelTest.java}
@@ -449,19 +411,19 @@ El comportamiento de esta clase sera detallado en la sección 7. %~\ref{sec:Prue
 \subsection{DJView.java}
 Es una clase que se encontraba ya implementada por el código fuente original. Sin embargo, se le realizaron las siguientes modificaciones a fin de satisfacer los requerimientos pertinentes:
 \begin{itemize}
-\item Se creó el método "setModel", el cual es el encargado de determinar qué modelo se mostrará por la vista. Para hacerlo eficientemente, primeramente remueve los observadores antiguos, refresca el modelo actual al deseado, y finalmente vuelve a registrar los observadores.
-\item Se modificó la función "createView" para que crear un menú nuevo (con sus correspondientes items)dentro del frame del BeatBar, así con el permitir seleccionar entre los distintos modelos.
+\item Se creó el método \verb+setModel : void:+, el cual es el encargado de determinar qué modelo se mostrará por la vista. Para hacerlo eficientemente, primeramente remueve los observadores antiguos, refresca el modelo actual al deseado, y finalmente vuelve a registrar los observadores.
+\item Se modificó la función \verb+createView : void+ para que crear un menú nuevo (con sus correspondientes items)dentro del frame del BeatBar, así con el permitir seleccionar entre los distintos modelos.
 \end{itemize}
 
 \subsection{VANESAView.java}
 Es la clase encargada de crear una vista para representar el modelo VANESAModel. Sus funciones son:
 \begin{itemize}
-\item VANESAView (constructor): Registra los observadores (BeatObserver y BPMObserver) al modelo VANESAModel. A continuación crea una barra de progreso (jp : JProgressBar) a fin de con ella representar gráficamente el nivel de volumen leído por el micrófono.
-\item (@Override) updateBPM : void: Este método refresca la etiqueta que muestra el nivel de volumen del micrófono.
-\item (@Override) updateBeat : void: En esta función, bajo ciertas condiciones, se "pinta" el valor de volumen del micrófono. 
+\item \verb+VANESAView (constructor):+ Registra los observadores (BeatObserver y BPMObserver) al modelo VANESAModel. A continuación crea una barra de progreso (\verb+jp : JProgressBar+) a fin de con ella representar gráficamente el nivel de volumen leído por el micrófono.
+\item \verb+(@Override) updateBPM : void:+ Este método refresca la etiqueta que muestra el nivel de volumen del micrófono.
+\item \verb+(@Override) updateBeat : void:+ En esta función, bajo ciertas condiciones, se \comillas{pinta} el valor de volumen del micrófono.
 \end{itemize}
 
-\subsection{Diagrama de Sequencia}
+\subsection{Diagrama de Secuencia}
 A continuación se muestran varios diagramas de secuencia de ejecución del proceso:
 
 \begin{figure}[H] % Example image
@@ -485,7 +447,7 @@ A continuación se muestran varios diagramas de secuencia de ejecución del proc
 A continuación se muestran varios diagramas de paquetes que modelan software:
 
 \begin{figure}[H] % Example image
-\center{\includegraphics[width=\linewidth]{DiagramaDePaquetes_Post_a}}
+\center{\includegraphics[width=0.85\linewidth]{DiagramaDePaquetes_Post_a}}
 \label{fig:DiagramaDePaquetes_Post_a}
 \end{figure}
 
@@ -505,7 +467,7 @@ Se implementó un patrón de diseño Singleton en la clase VANESAModel.
 \section{Pruebas Unitarias del Sistema}
 
 \subsection{Pruebas Automáticas}
-La clase "VANESAModelTest.java" genera un test unitario para encontrar errores en la clase VANESAModel. Realiza pruebas sobre los métodos "calculateRMSLevel" y "getAudioFormat".
+La clase \verb+VANESAModelTest.java+ genera un test unitario para encontrar errores en la clase \verb+VANESAModel+. Realiza pruebas sobre los métodos \verb+calculateRMSLevel+ y \verb+getAudioFormat+.
 
 %\subsection{Casos de Prueba del Sistema}
 %\subsubsection{Contra los Requerimientos Funcionales del Sistema}
@@ -514,7 +476,7 @@ La clase "VANESAModelTest.java" genera un test unitario para encontrar errores e
 
 %\subsection{Smoke/Sanity Tests}
 
-\subsection{Matriz de Trazabilidad Actualizada}
+\subsection{Matriz de Trazabilidad}
 Después de realizar la pruebas unitarias de software y compararlas con los requerimientos del sistema se obtuvo la siguiente matriz de trazabilidad:
 
 \begin{figure}[H] % Example image
@@ -530,8 +492,8 @@ P/F Ratio = 100\%.
 \subsubsection{Corregidos}
 Por un lado se identificaron y corrigieron los siguientes bugs:
 \begin{itemize}
-\item En el DJTestDrive no existía reproducción de sonido. Se corrigió agregando la siguiente linea de código en la posición 85 de la clase BeatModel:\\ 
-\verb+sequencer.setMicrosecondPosition(0);+ 
+\item En el DJTestDrive no existía reproducción de sonido. Se corrigió agregando la siguiente linea de código en la posición 85 de la clase BeatModel:\\
+\verb+sequencer.setMicrosecondPosition(0);+
 \item En VANESAModel la frecuencia del beatbar no era proporcional al volumen de micrófono, se soluciono haciendo un delay antes de notificar al observador del beatbar, este delay es inversamente proporcional al volumen.
 \item En DJView en el beatbar, en el menu para seleccionar el modelo a mostrar, cuando se selecciona un modelo cualquiera, este era mostrado en el view actual pero también se creaba una nueva instancia del mismo. Esto se solucionó en el controlador de cada modelo evaluando si ya existía una instancia del view creada por este controlador, en cuyo caso, de ser así, se trabaja sobre esta y no se crea un nuevo view.
 \end{itemize}
@@ -547,18 +509,18 @@ Por el otro lado, los siguientes bugs carecen de solución hasta el momento:
 \subsection{Cantidad de horas de producción}
 \begin{center}
 \begin{tabular}{c c c}
-\hline\hline %inserts double horizontal lines 
-Fecha de Reunión & Duración [Hs]\#1 & Total Horas x Persona [Hs] \\ [0.5ex] % inserts table 
-%heading 
-\hline % inserts single horizontal line 
-Vie 13/06 & 8 & 32 \\ % inserting body of the table 
-Mie 25/06 & 6 & 24 \\ 
-Sab 28/06 & 7 & 28 \\ 
-Lun 30/06 & 6 & 24 \\ 
-Mie 02/07 & 12 & 48 \\ 
+\hline\hline %inserts double horizontal lines
+Fecha de Reunión & Duración [Hs]\#1 & Total Horas x Persona [Hs] \\ [0.5ex] % inserts table
+%heading
+\hline % inserts single horizontal line
+Vie 13/06 & 8 & 32 \\ % inserting body of the table
+Mie 25/06 & 6 & 24 \\
+Sab 28/06 & 7 & 28 \\
+Lun 30/06 & 6 & 24 \\
+Mie 02/07 & 12 & 48 \\
 Jue 03/07 & 14 & 56 \\
-Vie 04/07 & 8 & 24 \\ [1ex] % [1ex] adds vertical space 
-\hline %inserts single line 
+Vie 04/07 & 8 & 24 \\ [1ex] % [1ex] adds vertical space
+\hline %inserts single line
 \end{tabular}
 \end{center}
 
@@ -592,7 +554,7 @@ Desafortunadamente resulto muy frustrante no poder cumplir con nuestra voluntad 
 
 Head First Design Patterns
 By Eric Freeman, Elisabeth Robson, Bert Bates, Kathy Sierra
-Publisher: 
+Publisher:
 Released: October 2004
 
 \bibitem[1]{O'Reilly Media}
