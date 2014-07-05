@@ -3,6 +3,8 @@ FinalIngDeSoftware
 
 En este repositorio se desarrollará el trabajo práctico final para la materia Ingeniería de Software que se cursa en el primer cuatrimestre del 4to año de la carrera Ingeniería en Computación de la FCEFyN - UNC
 
+Para ejecutar la presentación debe abrir con un navegador web el archivo index.html dentro del directorio /Diapositivas.
+
 Ejecución de los archivos ejecutables:
 
 WINDOWS 7:
