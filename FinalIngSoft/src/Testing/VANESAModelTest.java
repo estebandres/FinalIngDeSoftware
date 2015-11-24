@@ -10,14 +10,12 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import Modelos.BeatModelInterface;
 import Modelos.VANESAModel;
+import Modelos.BeatModelInterface;
 
 public class VANESAModelTest {
-
 	VANESAModel vanesaModelTest;
 	byte[] sample;
-
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -30,29 +28,33 @@ public class VANESAModelTest {
 	public void setUp() throws Exception {
 		vanesaModelTest = VANESAModel.getInstance();
 		sample = new byte[10];
-		for(int i = 0; i < sample.length; i+=2){		sample[i] = (byte) 50d;		sample[i+1] = 0;}
+		for(int i = 0; i < sample.length; i+=2){		
+			sample[i] = (byte) 50d;
+		}
 	}
 
 	@After
 	public void tearDown() throws Exception {
 	}
-
+	
 	@Test
 	public void testSingleton() {
 		BeatModelInterface resultado = VANESAModel.getInstance();
 		assertEquals(vanesaModelTest,resultado);
 	}
-
+	
 	@Test
-	public void testRMS(){
+	public void testCalculateRMSLevel() {
 		int resultado = vanesaModelTest.calculateRMSLevel(sample);
 		int esperado = 25;
-		assertEquals(esperado,resultado);		
+		assertEquals(esperado,resultado);
+		
 	}
-
+	
 	@Test
 	public void testFormat(){
 		AudioFormat resultado = vanesaModelTest.getAudioFormat();
 		assertNotEquals(null,resultado);
 	}
+
 }
